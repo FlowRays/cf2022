@@ -5,6 +5,12 @@
         "iostream": "cpp",
         "xstring": "cpp",
         "utility": "cpp",
-        "algorithm": "cpp"
+        "algorithm": "cpp",
+        "queue": "cpp",
+        "iterator": "cpp",
+        "memory": "cpp",
+        "random": "cpp",
+        "xutility": "cpp",
+        "xiosbase": "cpp"
     }
 }
