@@ -1,3 +1,5 @@
+// 在子图上bfs拓扑
+
 #include <bits/stdc++.h>
 
 #define forn(i, n) for (ll i = 0; i < ll(n); i++)
@@ -59,7 +61,7 @@ int main() {
                 if(deg[v]==0) q.push(v);
             }
         }
-        if(num.size() < cnt) return true;
+        if(num.size() < cnt) return true; // 有环
         if(*max_element(all(dis)) >= k) return true;
         return false;
     };

@@ -22,56 +22,33 @@ void solve(){
     vi a(n),b(n);
     forn(i,n) cin>>a[i];
     forn(i,n) cin>>b[i];
-    auto a_ = a, b_ = b;
-    sort(all(a_));
-    sort(all(b_));
-    vector<pii> pa(n),pb(n);
-    forn(i,n){
-        int l = lower_bound(all(a_),a[i])-a_.begin();
-        int r = lower_bound(all(a_),a[i]+1)-a_.begin()-1;
-        pa[i] = {l,r};
-    }
-    forn(i,n){
-        int l = lower_bound(all(b_),b[i])-b_.begin();
-        int r = lower_bound(all(b_),b[i]+1)-b_.begin()-1;
-        pb[i] = {l,r};
-    }
-    vector<bool> vis(n,false);
-    vi seq(n);
-    forn(i,n){
-        int l = max(pa[i].first,pb[i].first);
-        int r = min(pa[i].second,pb[i].second);
-        bool ok = false;
-        fore(j,l,r){
-            if(!vis[j]){
-                vis[j] = true;
-                ok = true;
-                seq[i] = j;
-                break;
-            }
-        }
-        if(!ok){
-            cout<<-1<<endl;
-            return;
-        }
-    }
+    vector<pii> p(n);
+    forn(i,n) p[i] = {a[i],b[i]};
+    sort(all(a));
+    sort(all(b));
     vector<pii> ans;
+    bool ok = true;
     forn(i,n){
-        int idx;
-        forn(j,n){
-            if(seq[j] == i) {
-                idx = j;
+        fore(j,i,n-1){
+            if(p[j] == make_pair(a[i],b[i])){
+                swap(p[i],p[j]);
+                if(i != j){
+                    ans.emplace_back(i,j);
+                }
                 break;
             }
         }
-        if(idx != i) {
-            swap(seq[idx],seq[i]);
-            ans.pb({i+1,idx+1});
+        if(p[i] != make_pair(a[i],b[i])){
+            ok = false;
+            break;
         }
     }
-    cout<<ans.size()<<endl;
-    for(auto [x,y]: ans){
-        cout<<x<<" "<<y<<endl;
+    if(!ok) cout<<-1<<endl;
+    else{
+        cout<<ans.size()<<endl;
+        for(auto [x,y]: ans){
+            cout<<x+1<<" "<<y+1<<endl;
+        }
     }
 }
 

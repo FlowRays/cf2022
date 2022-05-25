@@ -17,10 +17,12 @@ const int mod = 1e9+7;
 const int N = 1e5+10;
 
 void solve(){
-    ll a,b,c;
-    cin>>a>>b>>c;
-    ll x = a+b+c, y = b+c, z = c;
-    cout<<x<<" "<<y<<" "<<z<<endl;
+    ll n;
+    cin>>n;
+    if(n%2==0 && n>=4){
+        cout<<(n/2+2)/3<<" "<<n/4<<endl;
+    }
+    else cout<<-1<<endl;
 }
 
 int main() {

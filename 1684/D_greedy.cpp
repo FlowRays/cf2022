@@ -21,36 +21,12 @@ void solve(){
     cin>>n>>k;
     vi a(n);
     forn(i,n) cin>>a[i];
-    ll ans = 0, step = 0;
-    priority_queue<ll,vector<ll>,greater<ll>> q;
-    forn(i,n){
-        ll t1 = a[i]+step, t2 = 0;
-        if(step == k){
-            if(q.size()){
-                ll tt = q.top();
-                q.pop();
-                ll diff = a[i]+k-1;
-                // cout<<i<<": "<<tt<<" "<<diff<<endl;
-                if(diff>tt){
-                    q.push(diff);
-                    ans += tt;
-                }
-                else{
-                    ans += t1;
-                    q.push(tt);
-                }
-            }
-            else 
-                ans += t1;
-            // cout<<i<<": ans = "<<ans<<endl;
-            continue;
-        }
-        // cout<<i<<": "<<t1<<" "<<t2<<endl;
-        if(t1<=t2) ans += t1;
-        else ans += t2, step++, q.push(t1);
-        // cout<<i<<": ans = "<<ans<<endl;
-        
-    }
+    vi b(n);
+    forn(i,n) b[i] = a[i] - (n-i-1);
+    sort(all(b),greater<int>());
+    ll ans = accumulate(all(a),0ll);
+    ans -= k*(k-1)/2;
+    forn(i,k) ans -= b[i];
     cout<<ans<<endl;
 }
 

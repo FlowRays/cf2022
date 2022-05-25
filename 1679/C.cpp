@@ -71,8 +71,6 @@ int main() {
             c.modify(y,-1);     
             int t1 = r.get(x)-r.get(x-1);
             int t2 = c.get(y)-c.get(y-1);
-            // int t3 = r1.get(x)-r1.get(x-1);
-            // int t4 = c1.get(y)-c1.get(y-1);
             if(t1 == 0) r1.modify(x,-1);
             if(t2 == 0) c1.modify(y,-1);                   
         }

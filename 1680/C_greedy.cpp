@@ -1,3 +1,5 @@
+// https://zhuanlan.zhihu.com/p/514201500
+
 #include <bits/stdc++.h>
 
 #define forn(i, n) for (int i = 0; i < int(n); i++)
@@ -17,10 +19,18 @@ const int mod = 1e9+7;
 const int N = 1e5+10;
 
 void solve(){
-    ll a,b,c;
-    cin>>a>>b>>c;
-    ll x = a+b+c, y = b+c, z = c;
-    cout<<x<<" "<<y<<" "<<z<<endl;
+    string s;
+    cin>>s;
+    int n = s.size();
+    vi s1(n+1);
+    fore(i,1,n) s1[i] = s1[i-1] + (s[i-1]=='1');
+    int ans = 1e9;
+    int t = s1[n];
+    forn(i,n){
+        if(i+t>n) break;
+        ans = min(ans,t-(s1[i+t]-s1[i]));
+    }
+    cout<<ans<<endl;
 }
 
 int main() {
